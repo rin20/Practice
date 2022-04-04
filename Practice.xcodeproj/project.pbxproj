@@ -20,6 +20,8 @@
 		BC8A7FE427F7EE0300C0BBD0 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = BC8A7FE327F7EE0300C0BBD0 /* Realm */; };
 		BC8A7FE627F7EE0300C0BBD0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC8A7FE527F7EE0300C0BBD0 /* RealmSwift */; };
 		BC8A7FE827F81A6800C0BBD0 /* class.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A7FE727F81A6800C0BBD0 /* class.swift */; };
+		BC8A7FEB27FA7B8900C0BBD0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A7FE927FA7B8900C0BBD0 /* TableViewCell.swift */; };
+		BC8A7FEC27FA7B8A00C0BBD0 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC8A7FEA27FA7B8900C0BBD0 /* TableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		BC8A7FD327F6DE8500C0BBD0 /* PracticeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BC8A7FE027F6E0E700C0BBD0 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		BC8A7FE727F81A6800C0BBD0 /* class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = class.swift; sourceTree = "<group>"; };
+		BC8A7FE927FA7B8900C0BBD0 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		BC8A7FEA27FA7B8900C0BBD0 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,8 @@
 				BC8A7FB227F6DE8100C0BBD0 /* SceneDelegate.swift */,
 				BC8A7FB627F6DE8100C0BBD0 /* Main.storyboard */,
 				BC8A7FB427F6DE8100C0BBD0 /* ViewController.swift */,
+				BC8A7FE927FA7B8900C0BBD0 /* TableViewCell.swift */,
+				BC8A7FEA27FA7B8900C0BBD0 /* TableViewCell.xib */,
 				BC8A7FE727F81A6800C0BBD0 /* class.swift */,
 				BC8A7FE027F6E0E700C0BBD0 /* EditViewController.swift */,
 				BC8A7FB927F6DE8500C0BBD0 /* Assets.xcassets */,
@@ -249,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC8A7FBD27F6DE8500C0BBD0 /* LaunchScreen.storyboard in Resources */,
+				BC8A7FEC27FA7B8A00C0BBD0 /* TableViewCell.xib in Resources */,
 				BC8A7FBA27F6DE8500C0BBD0 /* Assets.xcassets in Resources */,
 				BC8A7FB827F6DE8100C0BBD0 /* Main.storyboard in Resources */,
 			);
@@ -278,6 +285,7 @@
 				BC8A7FE127F6E0E700C0BBD0 /* EditViewController.swift in Sources */,
 				BC8A7FB527F6DE8100C0BBD0 /* ViewController.swift in Sources */,
 				BC8A7FE827F81A6800C0BBD0 /* class.swift in Sources */,
+				BC8A7FEB27FA7B8900C0BBD0 /* TableViewCell.swift in Sources */,
 				BC8A7FB127F6DE8100C0BBD0 /* AppDelegate.swift in Sources */,
 				BC8A7FB327F6DE8100C0BBD0 /* SceneDelegate.swift in Sources */,
 			);

@@ -15,11 +15,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for:indexPath) as! TableViewCell
         
-        cell?.textLabel?.text = op[indexPath.row].title
+        cell.label.text = op[indexPath.row].title
         
-        return cell!
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -59,13 +59,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var op: Results<Task>!
     var number: Int!
+    var l: Int!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        TableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         
         TableView.delegate = self
         TableView.dataSource = self
+        
+        
         // Do any additional setup after loading the view.
     }
     
