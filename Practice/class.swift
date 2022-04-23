@@ -12,4 +12,5 @@ import RealmSwift
 class Task: Object{
     @objc dynamic var title: String!
     @objc dynamic var num = 0
+    @objc dynamic var isDone: Bool = false
 }

@@ -54,6 +54,7 @@ class EditViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDe
         if cellNum != nil{
             textField.text = tasks[cellNum].title
             self.pickerView.selectRow(tasks[cellNum].num, inComponent: 0, animated: false)
+            number = tasks[cellNum].num
         }
         //        pickerView.numberOfRows(inComponent: tasks.count)
         
@@ -79,17 +80,30 @@ class EditViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDe
                 present(alertF, animated: true, completion: nil)
                 
             }
-        }else{
-            var ank = realm.objects(Task.self)[cellNum]
-            try! realm.write({
-                ank.title = textField.text
-                ank.num = number
-            })
-            let alertC: UIAlertController = UIAlertController(title: "変更", message: "タスクの変更が完了しました", preferredStyle: .alert)
-            alertC.addAction(UIAlertAction(title: "OK", style: .default,  handler: { action in
-                self.navigationController?.popViewController(animated: true)
-            }))
-            present(alertC, animated: true, completion: nil)
+        }
+        else{
+            if number == 0{
+                let alertK: UIAlertController = UIAlertController(title: "不可", message: "タスクの種類を選択してください", preferredStyle: .alert)
+                alertK.addAction(UIAlertAction(title: "OK", style: .default ))
+                present(alertK, animated: true, completion: nil)
+            }else{
+                var ank = realm.objects(Task.self)[cellNum]
+                let alertC: UIAlertController = UIAlertController(title: "変更", message: "タスクの変更が完了しました", preferredStyle: .alert)
+                alertC.addAction(UIAlertAction(title: "OK", style: .default,  handler: { action in
+                    self.navigationController?.popViewController(animated: true)
+                }))
+                if textField.text == ank.title && number == ank.num{
+                    present(alertC, animated: true, completion: nil)
+                }else{
+                    print("猫大好き",number)
+                    try! realm.write({
+                        ank.title = textField.text
+                        ank.num = number
+                    })
+
+                    present(alertC, animated: true, completion: nil)
+                }
+            }
         }
     }
     
