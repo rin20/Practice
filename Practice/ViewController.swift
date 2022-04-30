@@ -17,7 +17,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for:indexPath) as! TableViewCell
         
+        cell.task = op[indexPath.row]
         cell.label.text = op[indexPath.row].title
+        cell.num = indexPath.row
         
         return cell
     }
@@ -52,6 +54,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+//   func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+//           return true
+//       }
+//
+//   func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+//       try! realm.write{
+//           realm.
+//       }
+//        }
     
     @IBOutlet var TableView: UITableView!
     
@@ -69,6 +80,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         TableView.delegate = self
         TableView.dataSource = self
+        
+        isEditing = true
         
 //        aaaaaaaa
         // Do any additional setup after loading the view.

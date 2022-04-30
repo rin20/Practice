@@ -95,7 +95,7 @@ class EditViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDe
                 if textField.text == ank.title && number == ank.num{
                     present(alertC, animated: true, completion: nil)
                 }else{
-                    print("猫大好き",number)
+                    print("ねこだいすき",number)
                     try! realm.write({
                         ank.title = textField.text
                         ank.num = number

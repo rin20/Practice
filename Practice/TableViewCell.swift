@@ -16,10 +16,22 @@ class TableViewCell: UITableViewCell {
     
     let realm = try! Realm()
     
+    var num: Int!
+    var task: Task?
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        
+    print(task)
+        
+        if task?.isDone == true{
+            button.backgroundColor = UIColor.red
+        }else{
+            button.backgroundColor = UIColor.white
+            }
         
         self.button.layer.borderWidth  = 2
         self.button.layer.borderColor = UIColor.white.cgColor
@@ -42,12 +54,16 @@ class TableViewCell: UITableViewCell {
     }
     
     @IBAction func Button(){
-        var tasks = realm.objects(Task.self)
-        if tasks[<#Int#>].isDone == false{
+        let tasks = realm.objects(Task.self)[num]
+        if tasks.isDone == false{
             button.backgroundColor = UIColor.red
         }else{
             button.backgroundColor = UIColor.white
         }
+        try! realm.write{
+            tasks.isDone = !tasks.isDone
+        }
+        print(tasks.isDone)
     }
 }
 
