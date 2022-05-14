@@ -59,24 +59,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-//   func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-//           return true
-//       }
-//
-//   func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-//       try! realm.write{
-//           realm.
-//       }
-//        }
+   func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+           return true
+       }
+
+   func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+       try! realm.write{
+           realm.delete(op[sourceIndexPath.row])
+           realm.add(op[destinationIndexPath.row])
+       }
+        }
     
     @IBOutlet var TableView: UITableView!
-    
-    let realm = try! Realm()
-    let saveNumber: UserDefaults = UserDefaults.standard
+    @IBOutlet var Item: UIBarButtonItem!
     
     var op: Results<Task>!
     var number: Int!
     var l: Int!
+    var kazu: Int!
+    
+    let realm = try! Realm()
+    let saveNumber: UserDefaults = UserDefaults.standard
+    
+    
     
 
     override func viewDidLoad() {
@@ -93,8 +98,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let items = UIMenu(options: .displayInline, children: [
+            UIAction(title: "追加順", handler: { [self]_ in
+                kazu = 0
+            }),
+            UIAction(title: "種類順", handler: { [self]_ in
+                kazu = 1
+            })])
+        
+        Item.menu = UIMenu(title: "", children: [items])
+        Item.showsMenuAsPrimaryAction = true
+        
+        let sortProperties = [
+            SortDescriptor(keyPath: "isDone", ascending: true),
+            SortDescriptor(keyPath: "num", ascending: true)
+        ]
+        let sortPropertiesS = [
+            SortDescriptor(keyPath: "isDone", ascending: true),
+//            SortDescriptor(keyPath: "num", ascending: true)
+        ]
+        if  kazu == 1{
+            op = realm.objects(Task.self).sorted(by: sortProperties)
+        }else {
+            op = realm.objects(Task.self).sorted(by: sortPropertiesS)
+        }
         op = realm.objects(Task.self)
         TableView.reloadData()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
