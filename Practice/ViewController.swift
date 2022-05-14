@@ -20,6 +20,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.task = op[indexPath.row]
         cell.label.text = op[indexPath.row].title
         cell.num = indexPath.row
+//        cell.buttonC = op[indexPath.row].isDone
+        if op[indexPath.row].isDone == true{
+            cell.button.backgroundColor = UIColor.red
+        }else{
+            cell.button.backgroundColor = UIColor.white
+        }
         
         return cell
     }
@@ -27,7 +33,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         number = indexPath.row
         performSegue(withIdentifier: "segue", sender: nil)
-        print("できてる")
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

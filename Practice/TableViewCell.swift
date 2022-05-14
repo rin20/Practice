@@ -18,14 +18,14 @@ class TableViewCell: UITableViewCell {
     
     var num: Int!
     var task: Task?
+    var buttonC: Bool!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        
-    print(task)
+//        print(task?.title, task?.isDone)
         
         if task?.isDone == true{
             button.backgroundColor = UIColor.red
@@ -57,13 +57,17 @@ class TableViewCell: UITableViewCell {
         let tasks = realm.objects(Task.self)[num]
         if tasks.isDone == false{
             button.backgroundColor = UIColor.red
+            try! realm.write{
+                tasks.isDone = true
+            }
         }else{
             button.backgroundColor = UIColor.white
+            try! realm.write{
+                tasks.isDone = false
+            }
         }
-        try! realm.write{
-            tasks.isDone = !tasks.isDone
-        }
-        print(tasks.isDone)
+        
+        print(tasks.title,tasks.isDone)
     }
 }
 
