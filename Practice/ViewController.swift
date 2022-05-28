@@ -64,12 +64,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if realm.objects(Task.self)[indexPath.row].num == 1{
+        if op[indexPath.row].num == 1{
             cell.backgroundColor = UIColor {_ in return #colorLiteral(red: 0.9701908657, green: 0.9479609528, blue: 0.9483314514, alpha: 1)}
-        }else if realm.objects(Task.self)[indexPath.row].num == 2{
+        }else if op[indexPath.row].num == 2{
             cell.backgroundColor = UIColor {_ in return #colorLiteral(red: 0.8967932037, green: 0.968963104, blue: 0.9296508682, alpha: 1)}
-        }else if realm.objects(Task.self)[indexPath.row].num == 3{
-            cell.backgroundColor = UIColor{_ in return #colorLiteral(red: 0.8710472605, green: 0.939407189, blue: 0.9788456093, alpha: 1)}
+        }else if op[indexPath.row].num == 3{
+            cell.backgroundColor = UIColor{_ in return #colorLiteral(red: 0.8724774229, green: 0.9409495908, blue: 0.9804527646, alpha: 1)}
         }
     }
     
