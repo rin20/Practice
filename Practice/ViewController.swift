@@ -10,6 +10,19 @@ import RealmSwift
 import SwiftUI
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet var TableView: UITableView!
+    @IBOutlet var Item: UIBarButtonItem!
+    
+    var op: Results<Task>!
+//    var number: Int!
+    var Title: String!
+    var l: Int!
+    var kazu: Int!
+    
+    let realm = try! Realm()
+    let saveNumber: UserDefaults = UserDefaults.standard
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return op.count
     }
@@ -31,7 +44,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        number = indexPath.row
+//        number = indexPath.row
+        Title = op[indexPath.row].title
         performSegue(withIdentifier: "segue", sender: nil)
     }
     
@@ -69,21 +83,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
            realm.add(op[destinationIndexPath.row])
        }
         }
-    
-    @IBOutlet var TableView: UITableView!
-    @IBOutlet var Item: UIBarButtonItem!
-    
-    var op: Results<Task>!
-    var number: Int!
-    var l: Int!
-    var kazu: Int!
-    
-    let realm = try! Realm()
-    let saveNumber: UserDefaults = UserDefaults.standard
-    
-    
-    
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         TableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
@@ -101,46 +103,47 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let items = UIMenu(options: .displayInline, children: [
             UIAction(title: "追加順", handler: { [self]_ in
                 kazu = 0
+                sort()
             }),
             UIAction(title: "種類順", handler: { [self]_ in
                 kazu = 1
+                sort()
             })])
         
         Item.menu = UIMenu(title: "", children: [items])
-        Item.showsMenuAsPrimaryAction = true
-        
+
+        sort()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segue"{
+            let nextView = segue.destination as! EditViewController
+            nextView.cellNum = Title
+        }
+    }
+    
+    func sort(){
         let sortProperties = [
             SortDescriptor(keyPath: "isDone", ascending: true),
             SortDescriptor(keyPath: "num", ascending: true)
         ]
         let sortPropertiesS = [
             SortDescriptor(keyPath: "isDone", ascending: true),
-//            SortDescriptor(keyPath: "num", ascending: true)
-        ]
-        if  kazu == 1{
+            ]
+        if kazu == 1 {
             op = realm.objects(Task.self).sorted(by: sortProperties)
         }else {
             op = realm.objects(Task.self).sorted(by: sortPropertiesS)
         }
-        op = realm.objects(Task.self)
         TableView.reloadData()
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segue"{
-            let nextView = segue.destination as! EditViewController
-            nextView.cellNum = number
-        }
     }
     
     @IBAction func newPage(){
 
-        number = nil
+//        number = nil
         performSegue(withIdentifier: "new", sender: nil)
         print("newPage")
     }
-
 
 }
 

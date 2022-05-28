@@ -52,6 +52,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="Item" destination="cUG-2p-W7a" id="XDe-iq-Kia"/>
                         <outlet property="TableView" destination="9ac-T6-8Yg" id="ppv-fI-w1h"/>
                         <segue destination="7oY-YA-Yoa" kind="show" identifier="segue" id="LUF-bj-qkj"/>
                     </connections>
@@ -126,7 +127,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ECF-pE-BY2"/>
+        <segue reference="LUF-bj-qkj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

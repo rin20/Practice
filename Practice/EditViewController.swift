@@ -33,7 +33,8 @@ class EditViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDe
     
     var array = ["","宿題","娯楽","その他"]
     var number: Int!
-    var cellNum: Int!
+    var cellNum: String!
+    var task: Task!
     
     let realm = try! Realm()
     
@@ -50,11 +51,13 @@ class EditViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDe
     override func viewWillAppear(_ animated: Bool) {
         number  = nil
         
-        let tasks = realm.objects(Task.self)
+        
         if cellNum != nil{
-            textField.text = tasks[cellNum].title
-            self.pickerView.selectRow(tasks[cellNum].num, inComponent: 0, animated: false)
-            number = tasks[cellNum].num
+            task = try! Realm().objects(Task.self).filter("title == '\(cellNum!)'").first
+            textField.text = cellNum
+            self.pickerView.selectRow(task.num, inComponent: 0, animated: false)
+            number = task.num
+        
         }
         //        pickerView.numberOfRows(inComponent: tasks.count)
         
@@ -87,18 +90,16 @@ class EditViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDe
                 alertK.addAction(UIAlertAction(title: "OK", style: .default ))
                 present(alertK, animated: true, completion: nil)
             }else{
-                var ank = realm.objects(Task.self)[cellNum]
                 let alertC: UIAlertController = UIAlertController(title: "変更", message: "タスクの変更が完了しました", preferredStyle: .alert)
                 alertC.addAction(UIAlertAction(title: "OK", style: .default,  handler: { action in
                     self.navigationController?.popViewController(animated: true)
                 }))
-                if textField.text == ank.title && number == ank.num{
+                if textField.text == task.title && number == task.num{
                     present(alertC, animated: true, completion: nil)
                 }else{
-                    print("ねこだいすき",number)
                     try! realm.write({
-                        ank.title = textField.text
-                        ank.num = number
+                        task.title = textField.text
+                        task.num = number
                     })
 
                     present(alertC, animated: true, completion: nil)
@@ -108,10 +109,8 @@ class EditViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDe
     }
     
     @IBAction func delete(){
-        let filter = realm.objects(Task.self)[cellNum]
-        print(filter)
         try! realm.write{
-            realm.delete(filter)
+            realm.delete(task)
         }
         let alertD: UIAlertController = UIAlertController(title: "破棄", message: "タスクの削除が完了しました", preferredStyle: .alert)
         alertD.addAction(UIAlertAction(title: "OK", style: .default,  handler: { action in
