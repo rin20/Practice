@@ -95,6 +95,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         isEditing = true
         
+        
+        
 //        aaaaaaaa
         // Do any additional setup after loading the view.
     }
@@ -121,6 +123,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             nextView.cellNum = Title
         }
     }
+    
+    
     
     func sort(){
         let sortProperties = [

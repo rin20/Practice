@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class EditViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
+class EditViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate, UITextFieldDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -44,6 +44,7 @@ class EditViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDe
         pickerView.dataSource = self
         pickerView.delegate = self
         
+        textField.delegate = self
         
         // Do any additional setup after loading the view.
     }
@@ -61,6 +62,11 @@ class EditViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDe
         }
         //        pickerView.numberOfRows(inComponent: tasks.count)
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     @IBAction func save(){
