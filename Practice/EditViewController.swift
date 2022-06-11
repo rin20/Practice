@@ -46,6 +46,8 @@ class EditViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDe
         
         textField.delegate = self
         
+        textField.backgroundColor = UIColor(named: "textBox")
+        
         // Do any additional setup after loading the view.
     }
     
