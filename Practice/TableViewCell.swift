@@ -25,13 +25,19 @@ class TableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-//        print(task?.title, task?.isDone)
-        
         if task?.isDone == true{
-            button.backgroundColor = UIColor.red
+            button.backgroundColor = UIColor(named: "isDoneColor")
         }else{
             button.backgroundColor = UIColor.white
             }
+        
+//        if task?.num == 1{
+//            label.textColor = UIColor(named: "textColor1")
+//        }else if task?.num == 2{
+//            label.textColor = UIColor(named: "textColor2")
+//        }else if task?.num == 3{
+//            label.textColor = UIColor(named: "textColor3")
+//        }
         
         self.button.layer.borderWidth  = 2
         self.button.layer.borderColor = UIColor.white.cgColor
@@ -40,7 +46,6 @@ class TableViewCell: UITableViewCell {
         self.labelB.layer.borderWidth  = 1
         
         self.contentView.sendSubviewToBack(labelB)
-        
        
         
         //        labelB.isHidden = true
@@ -54,9 +59,10 @@ class TableViewCell: UITableViewCell {
     }
     
     @IBAction func Button(){
+        
         let tasks = realm.objects(Task.self)[num]
         if tasks.isDone == false{
-            button.backgroundColor = UIColor.red
+            button.backgroundColor = UIColor(named: "isDoneColor")
             try! realm.write{
                 tasks.isDone = true
             }
@@ -66,8 +72,7 @@ class TableViewCell: UITableViewCell {
                 tasks.isDone = false
             }
         }
-        
-        print(tasks.title,tasks.isDone)
+    
     }
 }
 

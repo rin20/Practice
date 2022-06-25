@@ -39,11 +39,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.task = op[indexPath.row]
         cell.label.text = op[indexPath.row].title
         cell.num = indexPath.row
-//        cell.buttonC = op[indexPath.row].isDone
         if op[indexPath.row].isDone == true{
-            cell.button.backgroundColor = UIColor.red
+            cell.button.backgroundColor = UIColor(named: "isDoneColor")
         }else{
             cell.button.backgroundColor = UIColor.white
+        }
+        
+        if op[indexPath.row].num == 1{
+            cell.backgroundColor = UIColor(named: "taskColor1")
+            cell.label.textColor = UIColor(named: "textColor1")
+        }else if op[indexPath.row].num == 2{
+            cell.backgroundColor = UIColor (named: "taskColor2")
+            cell.label.textColor = UIColor(named: "textColor2")
+        }else if op[indexPath.row].num == 3{
+            cell.backgroundColor = UIColor(named: "taskColor3")
+            cell.label.textColor = UIColor(named: "textColor3")
         }
         
         return cell
@@ -69,14 +79,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if op[indexPath.row].num == 1{
-            cell.backgroundColor = UIColor(named: "taskColor1")
-        }else if op[indexPath.row].num == 2{
-            cell.backgroundColor = UIColor (named: "taskColor2")
-        }else if op[indexPath.row].num == 3{
-            cell.backgroundColor = UIColor(named: "taskColor3")
-        }
+    private func tableView(_ tableView: UITableView, willDisplay cell: TableViewCell, forRowAt indexPath: IndexPath) {
+        
     }
     
    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -101,7 +105,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         isEditing = true
         
-        
+        TableView.separatorColor = UIColor(named: "separator")
         
 //        aaaaaaaa
         // Do any additional setup after loading the view.
@@ -152,7 +156,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 //        number = nil
         performSegue(withIdentifier: "new", sender: nil)
-        print("newPage")
     }
 
 }
