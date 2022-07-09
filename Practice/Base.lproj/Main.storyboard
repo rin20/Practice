@@ -70,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0eN-Ft-hyW">
-                                <rect key="frame" x="0.0" y="426" width="453" height="162"/>
+                                <rect key="frame" x="0.0" y="426" width="414" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="162" id="Tvd-ss-bCz"/>
                                 </constraints>
