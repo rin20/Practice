@@ -7,12 +7,6 @@
 
 import UIKit
 import RealmSwift
-import SwiftUI
-
-
-extension UITraitCollection {
-    
-}
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     

@@ -17,7 +17,7 @@ class TableViewCell: UITableViewCell {
     let realm = try! Realm()
     
     var num: Int!
-    var task: Task?
+    var task: Task!
     var buttonC: Bool!
     
     
@@ -59,17 +59,15 @@ class TableViewCell: UITableViewCell {
     }
     
     @IBAction func Button(){
-        
-        let tasks = realm.objects(Task.self)[num]
-        if tasks.isDone == false{
+        if task.isDone == false{
             button.backgroundColor = UIColor(named: "isDoneColor")
             try! realm.write{
-                tasks.isDone = true
+                task.isDone = true
             }
         }else{
             button.backgroundColor = UIColor.white
             try! realm.write{
-                tasks.isDone = false
+                task.isDone = false
             }
         }
     
